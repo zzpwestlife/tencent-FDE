@@ -1,0 +1,5 @@
+appId: wbapp_pTmIyRC93Z7Ncou60qsbYv
+name: FDE模拟题库
+localDir: /Users/admin/openSource/tencent-FDE/6. FDE离线版
+appType: web
+entryHtml: FDE课程及模拟测试题.html

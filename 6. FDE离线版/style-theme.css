@@ -107,6 +107,8 @@ button:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
 .badge{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;background:#eef2f7;color:var(--muted)}
 .badge.pass{background:#e3f7ee;color:var(--green)}
 .badge.fail{background:#fdeaea;color:var(--red)}
+/* 来源标记：AI 生成的自研卷（第 21、22 套），用于与原站 20 套区分 */
+.badge.ai{background:#fff4e0;color:#8a5a08;border:1px solid #f0dcb4;font-weight:600}
 
 /* 侧栏面板 */
 .panel{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
