@@ -1,0 +1,261 @@
+/* ============================================================
+   FDE 离线版 · 风格微调覆盖样式
+   说明：仅调整视觉（配色/圆角/阴影/顶栏渐变），不改变任何文案与功能。
+   题库数据、试题内容、交互逻辑保持与原站完全一致。
+   ============================================================ */
+
+:root{
+  --ink:#16202e;
+  --muted:#64748b;
+  --line:#e6ebf1;
+  --paper:#ffffff;
+  --bg:#eef2f8;
+  --accent:#3b5bdb;        /* 主色：靛蓝 */
+  --accent-soft:#edf1ff;
+  --deep:#1e2a44;          /* 深底 */
+  --orange:#c2690f;
+  --red:#d6443f;
+  --green:#1f9d6b;
+  --shadow:0 8px 24px rgba(30,42,68,.08);
+  --shadow-lg:0 14px 40px rgba(30,42,68,.14);
+}
+
+*{box-sizing:border-box}
+body{
+  background:
+    radial-gradient(1200px 500px at 100% -10%, #e3ebff 0%, rgba(227,235,255,0) 60%),
+    var(--bg);
+  color:var(--ink);
+  font:16px/1.65 "Inter","Microsoft YaHei","PingFang SC",system-ui,sans-serif;
+}
+
+/* 顶栏：白底 + 细微渐变 + 阴影，品牌方块渐变。
+   注意：与原站一致保持 static 定位，不做 sticky/吸顶。
+   若改为 sticky，顶栏会覆盖滚动到其上方的页面内容（例如考试页右上角的
+   “返回试卷列表”链接），导致该链接被顶栏挡住而点击无反应。 */
+.topbar{
+  height:80px;
+  padding:0 max(28px,calc((100vw - 1240px)/2));
+  display:flex;align-items:center;gap:48px;
+  background:linear-gradient(180deg,#ffffff 0%,#fbfcff 100%);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 2px 14px rgba(30,42,68,.05);
+}
+.brand{display:flex;gap:12px;align-items:center;color:var(--ink);font-size:23px;font-weight:800;white-space:nowrap}
+.mark{
+  background:linear-gradient(135deg,#3b5bdb,#5b7cfa);
+  color:#fff;width:36px;height:36px;display:grid;place-items:center;border-radius:10px;
+  box-shadow:0 4px 12px rgba(59,91,219,.35);
+}
+.brand-sub{font-size:14px;font-weight:400;color:var(--muted);border-left:1px solid var(--line);padding-left:12px}
+.topbar nav{display:flex;gap:28px}
+.topbar nav a{color:var(--muted);font-size:15px;padding:26px 0;transition:color .15s}
+.topbar nav a:hover{color:var(--accent);text-decoration:none}
+.topbar nav a.active{color:var(--accent);border-bottom:3px solid var(--accent);font-weight:700}
+.edition{margin-left:auto;color:var(--muted);font-size:13px;white-space:nowrap}
+
+main{max-width:1240px;margin:auto;padding:38px 24px 70px}
+
+.intro{position:relative;padding:6px 0 26px}
+.eyebrow{font-size:12px;letter-spacing:2px;color:var(--accent);font-weight:700}
+h1{font-size:34px;line-height:1.3;margin:12px 0 10px;letter-spacing:-.8px}
+h2{font-size:22px;margin:0 0 14px}
+h3{font-size:17px;margin:0 0 10px}
+p{margin:10px 0}
+.muted,.intro p{color:var(--muted)}
+
+/* 主视觉条：深靛蓝渐变 + 圆角 + 阴影 */
+.summary-strip{
+  display:flex;gap:0;background:linear-gradient(135deg,#1e2a44 0%,#2e4373 100%);
+  color:white;border-radius:16px;margin:0 0 30px;padding:24px 8px;
+  box-shadow:var(--shadow-lg);
+}
+.summary-strip div{flex:1;padding:0 22px;border-right:1px solid #ffffff22}
+.summary-strip div:last-child{border-right:0}
+.summary-strip strong{display:block;font-size:30px;line-height:1.1}
+.summary-strip span{font-size:13px;opacity:.85}
+
+.section-line{display:flex;align-items:baseline;gap:12px;margin:26px 0 16px}
+.section-line h2{margin:0}
+.section-line .muted{font-size:13px}
+
+/* 试卷卡片：圆角 + 阴影 + hover 抬升 */
+.papers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.paper{
+  background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px;
+  box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s,border-color .15s;
+}
+.paper:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#cdd8f3}
+.paper-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.paper-num{font-size:12px;letter-spacing:1.5px;color:var(--muted);font-weight:700}
+.paper h3{margin:2px 0 6px;font-size:18px}
+.paper p{font-size:13px;color:var(--muted);margin:0 0 12px}
+.paper-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+
+/* 按钮 */
+button{font:inherit;cursor:pointer;border:none;border-radius:9px;padding:10px 18px;transition:transform .1s,box-shadow .15s,background .15s}
+button:hover{text-decoration:none}
+.primary{background:linear-gradient(135deg,#3b5bdb,#5b7cfa);color:#fff;box-shadow:0 4px 12px rgba(59,91,219,.3)}
+.primary:hover{filter:brightness(1.05);transform:translateY(-1px)}
+.secondary{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.secondary:hover{background:#e0e8ff}
+.quiet{color:var(--muted);font-size:13px}
+.quiet:hover{color:var(--accent);text-decoration:none}
+button:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* 徽标 */
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;background:#eef2f7;color:var(--muted)}
+.badge.pass{background:#e3f7ee;color:var(--green)}
+.badge.fail{background:#fdeaea;color:var(--red)}
+
+/* 侧栏面板 */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
+.panel h3{margin-top:0}
+.note{font-size:13px;color:var(--muted)}
+.rules{margin:10px 0 0;padding-left:18px}
+.rules li{margin:6px 0;color:var(--ink)}
+.weight-row{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center;margin:10px 0;font-size:14px}
+.weight-row span:last-child{font-weight:700;color:var(--accent)}
+.track{grid-column:1 / -1;height:6px;background:var(--accent-soft);border-radius:999px;overflow:hidden}
+.track i{display:block;height:100%;background:linear-gradient(90deg,#3b5bdb,#7aa0ff);border-radius:999px}
+
+/* 考试页面 */
+.page-heading{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:22px}
+.exam-layout{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:24px;align-items:start}
+.question{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:30px;box-shadow:var(--shadow)}
+.question-meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:13px;color:var(--muted);margin-bottom:14px}
+.question-meta .badge{margin:0}
+.question-meta span:not(.badge){font-weight:600;color:var(--accent)}
+.stem{font-size:20px;line-height:1.6;margin:0 0 20px}
+.options{display:flex;flex-direction:column;gap:12px}
+.option{
+  display:flex;gap:14px;align-items:flex-start;padding:15px 18px;border:1px solid var(--line);
+  border-radius:12px;cursor:pointer;transition:border-color .12s,background .12s;background:#fcfdff;
+}
+.option:hover{border-color:#b9c6ee;background:#f5f8ff}
+.option.selected{border-color:var(--accent);background:var(--accent-soft)}
+.option.correct{border-color:var(--green);background:#e9f8f1}
+.option.incorrect{border-color:var(--red);background:#fdeceb}
+.option input{margin-top:4px;accent-color:var(--accent);width:18px;height:18px}
+.letter{
+  flex:none;width:28px;height:28px;display:grid;place-items:center;border-radius:8px;
+  background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:14px;
+}
+.option.correct .letter{background:#d4f1e6;color:var(--green)}
+.option.incorrect .letter{background:#fbdada;color:var(--red)}
+.choice{flex:1}
+.question-actions{display:flex;gap:12px;margin-top:22px;align-items:center}
+.question-actions .quiet{margin-left:auto}
+
+/* 计时与答题卡（.exam-aside 的 sticky 由原站 style.css 提供，此处不再叠加，
+   避免“侧栏 + 内层面板”双重 sticky 造成错位） */
+.timer{font-size:34px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--deep);letter-spacing:1px}
+.timer.urgent{color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.55}}
+.progress-line{height:8px;background:var(--accent-soft);border-radius:999px;overflow:hidden;margin:10px 0}
+.progress-line i{display:block;height:100%;background:linear-gradient(90deg,#3b5bdb,#7aa0ff)}
+/* 答题卡：与原站一致，每行 6 列；窄屏(≤680px)才改为每行 10 列。
+   切勿在基础规则里写成 10 列：答题卡面板宽约 234px，10 列会横向溢出把数字挤出面板。 */
+.map{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin:14px 0}
+.map button{
+  position:relative;aspect-ratio:1/1;padding:0;border:1px solid var(--line);border-radius:8px;
+  background:#fff;color:var(--ink);font-size:13px;font-weight:600;
+}
+.map button.answered{background:var(--accent-soft);color:var(--accent);border-color:#c2cdf2}
+.map button.current{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
+.map button.flagged{position:relative}
+.map button.flagged::after{content:"";position:absolute;top:3px;right:3px;width:7px;height:7px;border-radius:50%;background:var(--orange)}
+.legend{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);margin-top:10px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--accent);margin-right:6px;vertical-align:middle}
+
+/* 解析 */
+.analysis{margin-top:22px;border-top:1px dashed var(--line);padding-top:18px}
+.analysis h3{font-size:16px}
+.analysis p{margin:8px 0}
+.evidence{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0}
+.evidence blockquote{margin:8px 0;padding-left:12px;border-left:3px solid var(--accent);color:var(--muted)}
+
+/* 成绩报告 */
+.score-ring{
+  width:140px;height:140px;border-radius:50%;display:grid;place-items:center;
+  background:conic-gradient(var(--accent) calc(var(--score)*1%), #e6ebf1 0);
+  position:relative;flex:none;
+}
+.score-ring::before{content:"";position:absolute;inset:12px;background:#fff;border-radius:50%}
+.score-ring div{position:relative;text-align:center}
+.score-ring strong{font-size:40px;display:block;line-height:1;color:var(--deep)}
+.score-ring span{font-size:12px;color:var(--muted)}
+.result-top{display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:11px 12px;text-align:left}
+thead th{color:var(--muted);font-weight:600;font-size:13px;background:#f8fafc}
+tbody tr:hover{background:#f8fafc}
+
+/* 题库浏览 */
+.filters{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.filters input,.filters select{
+  padding:10px 14px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;min-width:180px;
+}
+.filters input:focus,.filters select:focus{outline:2px solid var(--accent);border-color:var(--accent)}
+.bank-item{display:block;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px;box-shadow:var(--shadow);transition:transform .12s,border-color .12s}
+.bank-item:hover{transform:translateX(3px);border-color:#c2cdf2;text-decoration:none}
+.bank-item p{margin:8px 0 0;color:var(--ink);font-size:15px}
+
+.empty{padding:50px 20px;text-align:center;color:var(--muted)}
+.empty h2{color:var(--ink)}
+
+/* 对话框 */
+dialog{border:none;border-radius:16px;padding:26px;box-shadow:var(--shadow-lg);max-width:420px}
+dialog::backdrop{background:rgba(20,30,50,.45)}
+dialog h2{margin-top:0}
+dialog .actions{display:flex;gap:12px;justify-content:flex-end;margin-top:18px}
+
+footer{
+  text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 50px;
+  border-top:1px solid var(--line);margin-top:20px;
+}
+
+/* 移动端（沿用原断点，仅补阴影） */
+@media(max-width:950px){
+  .topbar{gap:25px;padding:0 24px}
+  .brand-sub,.edition{display:none}
+  .home-grid{grid-template-columns:1fr 260px;gap:20px}
+  .papers{grid-template-columns:1fr}
+  .exam-layout{grid-template-columns:1fr 235px;gap:16px}
+  .question{padding:24px}
+  .exam-aside .panel{padding:18px}
+  .map{gap:5px}
+}
+@media(max-width:680px){
+  .topbar{height:auto;min-height:72px;padding:12px 18px;gap:16px;flex-wrap:wrap}
+  .brand{font-size:20px}
+  .topbar nav{gap:18px;margin-left:auto}
+  .topbar nav a{font-size:14px;padding:8px 0}
+  main{padding:24px 16px 44px}
+  h1{font-size:27px}
+  .home-grid,.exam-layout{grid-template-columns:1fr}
+  .papers{grid-template-columns:1fr}
+  .home-grid aside{order:2}
+  .summary-strip{padding:18px 0}
+  .summary-strip div{padding:0 12px}
+  .summary-strip strong{font-size:23px}
+  .exam-aside{position:static}
+  .question{padding:20px}
+  .stem{font-size:18px}
+  .option{padding:13px;font-size:15px;gap:10px}
+  .page-heading{align-items:flex-start}
+  .page-heading h1{font-size:24px}
+  .result-top{grid-template-columns:1fr;gap:22px}
+  .score-ring{margin:auto}
+  .filters select{max-width:100%;flex:1}
+  .map{grid-template-columns:repeat(10,1fr)}
+  .map button{min-height:30px}
+  .question-actions{flex-wrap:wrap}
+  .question-actions .quiet{order:3;width:100%}
+  .panel{padding:20px}
+  .section-line{align-items:start}
+  .section-line .muted{font-size:12px}
+  footer{font-size:12px}
+  .table-wrap{margin:0 -8px}
+}

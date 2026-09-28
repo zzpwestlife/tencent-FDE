@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="FDE课程模拟题库：20套试卷，60分钟限时考试、自动评分、逐题解析与章节依据。">
+<title>FDE · 模拟考试题库</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style-theme.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#home"><span class="mark">F</span>FDE <span class="brand-sub">学习与认证练习</span></a>
+  <nav aria-label="主导航">
+    <a href="#course">课程学习</a>
+    <a href="#home">模拟考试</a>
+    <a href="#bank">题库浏览</a>
+    <a href="#history">本机记录</a>
+  </nav>
+  <span class="edition">ADP 课程适配版</span>
+</header>
+<main id="app">
+  <section class="intro">
+    <span class="eyebrow">EXAM PRACTICE / 20 PAPERS</span>
+    <h1>把知识，练成解决问题的能力。</h1>
+    <p>每套 60 题 · 100 分 · 60 分钟 · 70 分通过</p>
+    <p>正在载入试卷。若长时间未显示，请重新打开页面。</p>
+  </section>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+<dialog id="confirm">
+  <form method="dialog">
+    <h2 id="dialog-title"></h2>
+    <p id="dialog-text"></p>
+    <div class="actions">
+      <button value="cancel" class="secondary">继续答题</button>
+      <button value="ok" class="primary">确认交卷</button>
+    </div>
+  </form>
+</dialog>
+<footer>依据本地保存的腾讯云 ADP FDE 课程编制 · 非官方题库，不代表真实考题或通过承诺</footer>
+<script src="course-index.js"></script>
+<script src="bank.js"></script>
+<script src="core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
