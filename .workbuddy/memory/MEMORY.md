@@ -25,6 +25,7 @@
 - 分享链接 https://fde-practice-bank.app.workbuddy.host/ ，appId `wbapp_pTmIyRC93Z7Ncou60qsbYv`。
 - **纯静态站，零后端**（`<script>` 加载题库、记录存 localStorage），改完本地文件后**重新发布同一目录即覆盖线上**，链接不变。
 - 发布参数：`language`=static，`entryHtml`=`FDE课程及模拟测试题.html`（**必须显式传**，否则自动检测选错），`domainPrefix`=`fde-practice-bank`。117M 全量可传通。
-- 发布会把目录里 `fde-records-*.json`（个人答题记录）一并上传，要剔除先移走。
+- **发布前先把 `records/` 移出去**：它是成绩同步中转目录（`fde-records-*.json`），app.js 不读它，带上只会泄露个人成绩。工具无 exclude 参数 → 只能 `mv records /tmp/xxx/` → 发布 → `mv` 回来。（2026-09-29 验证零功能影响。）
+- 冒烟验证：`app.js` 线上字节数 == 本地 → 新版已生效；`records/*.json` 应为 404；`course/第N章.html` 应为 200。注意 `size_download` 是 gzip 后大小，别拿首页 226 vs 本地 1852 当不一致。
 - **站点无鉴权**：拿到链接即可访问，内含 ADP 课程副本（4 章正文 + 266 张课程截图 + 22 套卷）——分享范围自己把握。
 - 会话内访问 github.com / `git push` 被代理拦成 502，走 GitHub 路线须用户在自己终端执行。
